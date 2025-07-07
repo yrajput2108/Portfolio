@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Rajput | CyberSecurity Analyst & Network Engineer</title>
+    <style>
+        :root {
+            --primary: #e0e0e0;
+            --secondary: #4fc3f7;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #1e1e1e;
+            --accent: #ff5252;
+            --card-bg: #252525;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background-color: var(--darker);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--secondary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover span {
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--secondary), #64b5f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 1s ease both;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255,255,255,0.8);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .tagline {
+            color: var(--secondary);
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.1s both;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--darker);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: 2px solid transparent;
+            animation: fadeInUp 1s ease 0.3s both;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        section {
+            padding: 3rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.6s ease;
+        }
+        
+        .section-title.visible::after {
+            transform: scaleX(1);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        
+        .profile-wrapper {
+            flex: 0 0 250px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            background: linear-gradient(45deg, #2c3e50, #4ca1af);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .profile-img img {
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .profile-wrapper:hover .profile-img::before {
+            opacity: 1;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+        }
+        
+        .profile-wrapper:hover .profile-img {
+            transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .about-text.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .about-text p:nth-child(1) { transition-delay: 0.1s; }
+        .about-text p:nth-child(2) { transition-delay: 0.2s; }
+        .about-text p:nth-child(3) { transition-delay: 0.3s; }
+        
+        .about-text ul {
+            margin: 1rem 0 0 1rem;
+        }
+        
+        .about-text li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .about-text.visible li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-text li:nth-child(1) { transition-delay: 0.4s; }
+        .about-text li:nth-child(2) { transition-delay: 0.5s; }
+        .about-text li:nth-child(3) { transition-delay: 0.6s; }
+        .about-text li:nth-child(4) { transition-delay: 0.7s; }
+        
+        .about-text li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .skills {
+            background-color: var(--darker);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+        
+        .skills.visible .skill-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skills.visible .skill-card:nth-child(1) { transition-delay: 0.1s; }
+        .skills.visible .skill-card:nth-child(2) { transition-delay: 0.2s; }
+        .skills.visible .skill-card:nth-child(3) { transition-delay: 0.3s; }
+        .skills.visible .skill-card:nth-child(4) { transition-delay: 0.4s; }
+        
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            border-color: var(--secondary);
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        
+        .skill-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .experience {
+            background-color: var(--dark);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 1s ease;
+        }
+        
+        .experience.visible .timeline::after {
+            transform: scaleY(1);
+        }
+        
+        .timeline-item {
+            padding: 8px 30px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .timeline-item.left {
+            transform: translateX(-20px);
+        }
+        
+        .timeline-item.right {
+            transform: translateX(20px);
+        }
+        
+        .experience.visible .timeline-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .experience.visible .timeline-item:nth-child(1) { transition-delay: 0.4s; }
+        .experience.visible .timeline-item:nth-child(2) { transition-delay: 0.7s; }
+        .experience.visible .timeline-item:nth-child(3) { transition-delay: 1s; }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--dark);
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            top: 12px;
+            z-index: 1;
+            transform: scale(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .experience.visible .timeline-item::after {
+            transform: scale(1);
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -8px;
+        }
+        
+        .right::after {
+            left: -8px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border-color: var(--secondary);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.4rem;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0.4rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .timeline-date {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        
+       .contact {
+            text-align: center;
+            background-color: var(--darker);
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 50%;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            border: 2px solid var(--secondary);
+        }
+        
+        .contact-link:hover {
+            background-color: var(--secondary);
+            color: var(--darker);
+            transform: translateY(-4px) scale(1.05);
+        }
+        
+        footer {
+            background-color: var(--darker);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3fb0e6;
+        }
+        
+        /* Hover effects */
+        .btn-hover-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-hover-effect:active {
+            transform: translateY(-1px);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-wrapper {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto 1.5rem;
+            }
+            
+            .profile-img {
+                height: 280px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Cyber<span>Sec</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hero">
+                <h1>Yash Rajput</h1>
+                <p class="tagline"> CYBERSECURITY ANALYST | NETWORK ENGINEER</p>
+                <p>Protecting digital assets through offensive security strategies and forensic analysis</p>
+                <a href="#contact" class="btn pulse">Get In Touch</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="profile-wrapper">
+                    <div class="profile-img">
+                        <img src="profile.jpg" alt="Yash Rajput - Cybersecurity Professional" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>I am a Certified Ethical Hacker and Cybersecurity professional with extensive experience in penetration testing, vulnerability assessment, and cyber crime forensics. My passion lies in identifying security weaknesses before malicious actors can exploit them.</p>
+                    <p>With a strong background in networking engineering, I approach security challenges with a comprehensive understanding of infrastructure and systems architecture. My work focuses on proactive defense through ethical hacking methodologies.</p>
+                    <p>I specialize in:</p>
+                    <ul>
+                        <li>Penetration Testing & Vulnerability Assessment</li>
+                        <li>Network Security Architecture</li>
+                        <li>Digital Forensics & Incident Response</li>
+                        <li>Security Compliance & Risk Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Ethical Hacking</h3>
+                    <p>Certified Ethical Hacker (CEH) with expertise in penetration testing, vulnerability scanning, and security assessment using tools like Metasploit, Burp Suite, and Nmap.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Cyber Forensics</h3>
+                    <p>Digital forensics specialist with experience in evidence collection, memory analysis, and malware reverse engineering using tools like FTK, Autopsy, and Volatility.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Network Security</h3>
+                    <p>Network security engineer proficient in firewall configuration, IDS/IPS systems, VPN technologies, and secure network architecture design.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Security Tools</h3>
+                    <p>Kali Linux, Wireshark, Nessus, Aircrack-ng, John the Ripper, SQLmap, OWASP ZAP, Splunk, Snort, and various other security tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>CyberSecurity Analyst </h3>
+                        <p class="timeline-date">2022 - Present</p>
+                        <p>Conducting penetration tests and vulnerability assessments for clients across various industries. Developing security policies and providing remediation strategies.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Cyber Crime Forensic Analyst</h3>
+                        <p class="timeline-date">2020 - 2022</p>
+                        <p>Worked with law enforcement agencies to investigate cyber crimes. Performed digital forensics and analysed the frauds systems</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Intern - NetLeap IT Solutions</h3>
+                        <p class="timeline-date">2019 - 2020</p>
+                        <p>Gained hands-on experience in network administration, security monitoring, and basic penetration testing. Assisted senior engineers in security assessments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>Interested in discussing a security project or need consultation? Reach out to me through these channels:</p>
+            <div class="contact-links">
+                <a href="mailto:yrajput2108@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yrajput2108" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Yash Rajput - CyberSecurity Analyst &  Network Engineer. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">This website is secured with HTTPS and regularly penetration tested.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Add visible class to child elements that need animation
+                    if (entry.target.id === 'about') {
+                        entry.target.querySelector('.about-text').classList.add('visible');
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add pulse animation to CTA button on hover
+        const ctaButton = document.querySelector('.btn');
+        ctaButton.addEventListener('mouseenter', () => {
+            ctaButton.classList.add('pulse');
+        });
+        
+        ctaButton.addEventListener('mouseleave', () => {
+            ctaButton.classList.remove('pulse');
+        });
+    </script>
+</body>
+</html>

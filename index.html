@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yash Rajput | CyberSecurity Analyst & Network Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #e0e0e0;
@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
         
-        /* Header & Navigation */
         header {
             background-color: var(--darker);
             color: white;
@@ -245,23 +244,26 @@
             color: var(--secondary);
         }
         
-        /* Skills Section */
+        /* Skills Section - Mobile Optimized */
         .skills {
             background-color: var(--darker);
         }
         
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
         
         .skill-card {
             background-color: var(--card-bg);
             padding: 1.5rem;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.3s;
             border: 1px solid rgba(255,255,255,0.1);
+            min-height: 200px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
         }
         
         .skill-card:hover {
@@ -273,6 +275,13 @@
         .skill-card h3 {
             margin-bottom: 0.8rem;
             color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .skill-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            flex-grow: 1; /* Allows text to fill available space */
         }
         
         /* Experience Section */
@@ -404,16 +413,6 @@
             font-size: 0.9rem;
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .animate {
-            animation: fadeIn 1s ease forwards;
-        }
-        
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
@@ -503,6 +502,15 @@
                 display: none;
             }
             
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-card {
+                min-height: auto; /* Flexible height on mobile */
+                padding: 1.2rem;
+            }
+            
             .timeline::after {
                 left: 31px;
             }
@@ -545,8 +553,16 @@
                 font-size: 1.5rem;
             }
             
-            .skills-container {
-                grid-template-columns: 1fr;
+            .skill-card {
+                padding: 1rem;
+            }
+            
+            .skill-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .skill-card p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -586,7 +602,7 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content animate">
+        <div class="container hero-content">
             <h1>Yash Rajput</h1>
             <span class="tagline">CYBERSECURITY ANALYST | NETWORK ENGINEER</span>
             <p>Protecting digital assets through offensive security strategies and forensic analysis</p>
@@ -619,24 +635,24 @@
         </div>
     </section>
     
-    <!-- Skills Section -->
+    <!-- Skills Section with Mobile-Optimized Cards -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-container">
-                <div class="skill-card animate">
+                <div class="skill-card">
                     <h3>Ethical Hacking</h3>
                     <p>Certified Ethical Hacker (CEH) with expertise in penetration testing, vulnerability scanning, and security assessment using tools like Metasploit, Burp Suite, and Nmap.</p>
                 </div>
-                <div class="skill-card animate">
+                <div class="skill-card">
                     <h3>Cyber Forensics</h3>
                     <p>Digital forensics specialist with experience in evidence collection, memory analysis, and malware reverse engineering using tools like FTK, Autopsy, and Volatility.</p>
                 </div>
-                <div class="skill-card animate">
+                <div class="skill-card">
                     <h3>Network Security</h3>
                     <p>Network security engineer proficient in firewall configuration, IDS/IPS systems, VPN technologies, and secure network architecture design.</p>
                 </div>
-                <div class="skill-card animate">
+                <div class="skill-card">
                     <h3>Security Tools</h3>
                     <p>Kali Linux, Wireshark, Nessus, Aircrack-ng, John the Ripper, SQLmap, OWASP ZAP, Splunk, Snort, and various other security tools.</p>
                 </div>
@@ -649,21 +665,21 @@
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
-                <div class="timeline-item left animate">
+                <div class="timeline-item left">
                     <div class="timeline-content">
                         <h3>CyberSecurity Analyst</h3>
                         <span class="timeline-date">2022 - Present</span>
                         <p>Conducting penetration tests and vulnerability assessments for clients across various industries. Developing security policies and providing remediation strategies.</p>
                     </div>
                 </div>
-                <div class="timeline-item right animate">
+                <div class="timeline-item right">
                     <div class="timeline-content">
                         <h3>Cyber Crime Forensic Analyst</h3>
                         <span class="timeline-date">2020 - 2022</span>
                         <p>Worked with law enforcement agencies to investigate cyber crimes. Performed digital forensics and analysed the frauds systems.</p>
                     </div>
                 </div>
-                <div class="timeline-item left animate">
+                <div class="timeline-item left">
                     <div class="timeline-content">
                         <h3>Intern - NetLeap IT Solutions</h3>
                         <span class="timeline-date">2019 - 2020</span>
@@ -680,10 +696,10 @@
             <h2 class="section-title">Get In Touch</h2>
             <p>Interested in discussing a security project or need consultation? Reach out to me through these channels:</p>
             <div class="contact-links">
-                <a href="mailto:yrajput2108@gmail.com" class="contact-link animate">
+                <a href="mailto:yrajput2108@gmail.com" class="contact-link">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/yrajput2108" target="_blank" class="contact-link animate">
+                <a href="https://www.linkedin.com/in/yrajput2108" target="_blank" class="contact-link">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
@@ -747,27 +763,6 @@
                     });
                 }
             });
-        });
-        
-        // Scroll animation
-        const animateElements = document.querySelectorAll('.animate');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        animateElements.forEach(element => {
-            element.style.opacity = 0;
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(element);
         });
     </script>
 </body>
